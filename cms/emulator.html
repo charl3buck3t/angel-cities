@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OS Emulator Interface</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; }
+        .emulator { border: 1px solid #ccc; padding: 20px; margin: 15px auto; width: 80%; background: white; }
+        h1 { text-align: center; }
+        .theme { margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <div class="emulator">
+        <h1>OS Emulator Interface</h1>
+        <div id="themeContainer"></div>
+        <button id="loadThemes">Load Themed Instances</button>
+    </div>
+
+    <script>
+        document.getElementById('loadThemes').addEventListener('click', function() {
+            const themedInstances = JSON.parse(localStorage.getItem('themedInstances')) || {};
+            const themeContainer = document.getElementById('themeContainer');
+            themeContainer.innerHTML = '';
+            for (const [key, value] of Object.entries(themedInstances)) {
+                const div = document.createElement('div');
+                div.classList.add('theme');
+                div.innerHTML = `<strong>${key}</strong>: ${value}`;
+                themeContainer.appendChild(div);
+            }
+        });
+    </script>
+</body>
+</html>
